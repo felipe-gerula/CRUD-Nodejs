@@ -23,6 +23,7 @@ router.get("/notes", renderNotes);
 
 //Edit Note
 router.get("/notes/edit/:id", renderEditForm);
+
 router.put("/notes/edit/:id", updateNote);
 
 //Delete Note
