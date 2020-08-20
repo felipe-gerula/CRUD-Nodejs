@@ -8,7 +8,8 @@ const UserSchema = new Schema({
     },
     email : {
         type : String,
-        required : true
+        required : true,
+        unique : true
     },
     password:{
         type : String,
@@ -18,12 +19,12 @@ const UserSchema = new Schema({
     timestamps : true
 });
 
-UserSchema.methods.encrypPassword = async password => {
+UserSchema.methods.encryptPassword = async password => {
     const solt  = await bcryptjs.genSalt(10);
     return await bcryptjs.hash(password,solt);
 };
 
-UserSchema.methods.matchPassword = function (password){
+UserSchema.methods.matchPassword = async function (password){
     return await bcryptjs.compare(password,this.password)
 };
 
